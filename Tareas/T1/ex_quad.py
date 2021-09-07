@@ -89,9 +89,9 @@ def createQuad(shaderProgram):
     
     vertexData = np.array([
     #   positions        colors
-        -0.5, -0.5, 0.0,  1.0, 0.0, 0.0,
-         0.5, -0.5, 0.0,  0.0, 1.0, 0.0,
-         0.5,  0.5, 0.0,  0.0, 0.0, 1.0,
+        -0.5, -0.5, 0.0,  1.0, 1.0, 1.0,
+         0.5, -0.5, 0.0,  1.0, 1.0, 1.0,
+         0.5,  0.5, 0.0,  1.0, 1.0, 1.0,
         -0.5,  0.5, 0.0,  1.0, 1.0, 1.0
     # It is important to use 32 bits data
         ], dtype = np.float32)

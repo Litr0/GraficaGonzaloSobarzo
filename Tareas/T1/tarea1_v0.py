@@ -1,7 +1,7 @@
 import glfw
 from OpenGL.GL import *
 import OpenGL.GL.shaders
-import numpy
+import numpy as np
 import sys
 
 __author__ = "Ivan Sipiran"
@@ -11,19 +11,28 @@ __license__ = "MIT"
 # 1 byte = 8 bits
 SIZE_IN_BYTES = 4
 
+def crear_tablero(width,length): #creo fondo del tablero que sera blanco y sobrepongo cuadros negros intercalados
+    background=np.array([
+        -0.5, -0.5, 0.0,  1.0, 1.0, 1.0,
+         0.5, -0.5, 0.0,  1.0, 1.0, 1.0,
+         0.5,  0.5, 0.0,  1.0, 1.0, 1.0,
+        -0.5,  0.5, 0.0,  1.0, 1.0, 1.0
+    ])
+    
+    
 def crear_dama(x,y,r,g,b,radius):
     
     circle = []
     for angle in range(0,360,10):
         circle.extend([x, y, 0.0, r, g, b])
-        circle.extend([x+numpy.cos(numpy.radians(angle))*radius, 
-                       y+numpy.sin(numpy.radians(angle))*radius, 
+        circle.extend([x+np.cos(np.radians(angle))*radius, 
+                       y+np.sin(np.radians(angle))*radius, 
                        0.0, r, g, b])
-        circle.extend([x+numpy.cos(numpy.radians(angle+10))*radius, 
-                       y+numpy.sin(numpy.radians(angle+10))*radius, 
+        circle.extend([x+np.cos(np.radians(angle+10))*radius, 
+                       y+np.sin(np.radians(angle+10))*radius, 
                        0.0, r, g, b])
     
-    return numpy.array(circle, dtype = numpy.float32)
+    return np.array(circle, dtype = np.float32)
 
 if __name__ == "__main__":
 
@@ -42,7 +51,7 @@ if __name__ == "__main__":
 
     glfw.make_context_current(window)
 
-    dama = crear_dama(0.5,0.0, 0.0, 1.0, 0.0, 0.2)
+    dama = crear_dama(0.5,0.0, 0.0, 1.0, 0.0, 0.1)
 
     # Defining shaders for our pipeline
     vertex_shader = """
