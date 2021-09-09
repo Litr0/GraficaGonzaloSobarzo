@@ -86,15 +86,71 @@ def createQuad(shaderProgram):
 
     # Defining locations and colors for each vertex of the shape
     #####################################
-    
-    vertexData = np.array([
-    #   positions        colors
+    background=[
+         #posicion           Color
         -0.5, -0.5, 0.0,  1.0, 1.0, 1.0,
          0.5, -0.5, 0.0,  1.0, 1.0, 1.0,
          0.5,  0.5, 0.0,  1.0, 1.0, 1.0,
         -0.5,  0.5, 0.0,  1.0, 1.0, 1.0
-    # It is important to use 32 bits data
-        ], dtype = np.float32)
+    ]
+    for x in range(0,3):
+        background.extend([
+        #      posicion                 Color
+        -0.5+(0.25*x)  , 0.5-0.125, 0.0,  0.0, 0.0, 0.0,
+        -0.375+(0.25*x), 0.5-0.125, 0.0,  0.0, 0.0, 0.0,
+        -0.375+(0.25*x),  0.5     , 0.0,  0.0, 0.0, 0.0,
+        -0.5+(0.25*x)  ,  0.5     , 0.0,  0.0, 0.0, 0.0
+    ])
+        background.extend([
+        #              posicion                      Color
+        -0.375+(0.25*x),  0.5-0.25  , 0.0,  0.0, 0.0, 0.0,
+        -0.25+(0.25*x) ,  0.5-0.25  , 0.0,  0.0, 0.0, 0.0,
+        -0.25+(0.25*x) ,  0.5-0.125 , 0.0,  0.0, 0.0, 0.0,
+        -0.375+(0.25*x),  0.5-0.125 , 0.0,  0.0, 0.0, 0.0
+    ])
+        background.extend([
+        #      posicion                 Color
+        -0.5+(0.25*x)  ,  0.5-0.375, 0.0,  0.0, 0.0, 0.0,
+        -0.375+(0.25*x),  0.5-0.375, 0.0,  0.0, 0.0, 0.0,
+        -0.375+(0.25*x),  0.5-0.25 , 0.0,  0.0, 0.0, 0.0,
+        -0.5+(0.25*x)  ,  0.5-0.25 , 0.0,  0.0, 0.0, 0.0
+    ])
+        background.extend([
+        #              posicion                      Color
+        -0.375+(0.25*x),  0.5-0.5  , 0.0,  0.0, 0.0, 0.0,
+        -0.25+(0.25*x) ,  0.5-0.5  , 0.0,  0.0, 0.0, 0.0,
+        -0.25+(0.25*x) ,  0.5-0.375, 0.0,  0.0, 0.0, 0.0,
+        -0.375+(0.25*x),  0.5-0.375, 0.0,  0.0, 0.0, 0.0
+    ])   
+        background.extend([
+        #      posicion                Color
+        -0.5+(0.25*x)  ,  0.5-0.625, 0.0,  0.0, 0.0, 0.0,
+        -0.375+(0.25*x),  0.5-0.625, 0.0,  0.0, 0.0, 0.0,
+        -0.375+(0.25*x),  0.5-0.5  , 0.0,  0.0, 0.0, 0.0,
+        -0.5+(0.25*x)  ,  0.5-0.5  , 0.0,  0.0, 0.0, 0.0
+    ])
+        background.extend([
+        #              posicion                      Color
+        -0.375+(0.25*x),  0.5-0.75 , 0.0,  0.0, 0.0, 0.0,
+        -0.25+(0.25*x) ,  0.5-0.75 , 0.0,  0.0, 0.0, 0.0,
+        -0.25+(0.25*x) ,  0.5-0.625, 0.0,  0.0, 0.0, 0.0,
+        -0.375+(0.25*x),  0.5-0.625, 0.0,  0.0, 0.0, 0.0
+    ])
+        background.extend([
+        #      posicion                 Color
+        -0.5+(0.25*x)  ,  0.5-0.875, 0.0,  0.0, 0.0, 0.0,
+        -0.375+(0.25*x),  0.5-0.875, 0.0,  0.0, 0.0, 0.0,
+        -0.375+(0.25*x),  0.5-0.75 , 0.0,  0.0, 0.0, 0.0,
+        -0.5+(0.25*x)  ,  0.5-0.75 , 0.0,  0.0, 0.0, 0.0
+    ])
+        background.extend([
+        #              posicion                      Color
+        -0.375+(0.25*x),  0.5-1.0  , 0.0,  0.0, 0.0, 0.0,
+        -0.25+(0.25*x) ,  0.5-1.0  , 0.0,  0.0, 0.0, 0.0,
+        -0.25+(0.25*x) ,  0.5-0.875, 0.0,  0.0, 0.0, 0.0,
+        -0.375+(0.25*x),  0.5-0.875, 0.0,  0.0, 0.0, 0.0
+    ])
+    vertexData = np.array(background, dtype = np.float32)
 
     # Defining connections among vertices
     # We have a triangle every 3 indices specified
@@ -142,9 +198,8 @@ def createQuad(shaderProgram):
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo)
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, len(indices) * SIZE_IN_BYTES, indices, GL_STATIC_DRAW)
 
-    return vao, vbo, ebo, size
-    
-
+    return vao, vbo, ebo, size   
+window=None
 if __name__ == "__main__":
 
     # Initialize glfw
