@@ -93,7 +93,7 @@ def createQuad(shaderProgram):
          0.5,  0.5, 0.0,  1.0, 1.0, 1.0,
         -0.5,  0.5, 0.0,  1.0, 1.0, 1.0
     ]
-    for x in range(0,3):
+    for x in range(0,4):
         background.extend([
         #      posicion                 Color
         -0.5+(0.25*x)  , 0.5-0.125, 0.0,  0.0, 0.0, 0.0,
@@ -154,9 +154,12 @@ def createQuad(shaderProgram):
 
     # Defining connections among vertices
     # We have a triangle every 3 indices specified
-    indices = np.array(
-        [0, 1, 2,
-         2, 3, 0], dtype= np.uint32)
+    matriz=[]
+    m=0
+    while m <=128:
+        matriz.extend([m,m+1,m+2,m+2,m+3,m])
+        m+=4
+    indices = np.array(matriz, dtype= np.uint32)
 
     size = len(indices)
 
