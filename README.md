@@ -1,1 +1,1 @@
-# Grafica trabajos de Modelacion y Computacion grafica para ingenieros
+# Grafica, trabajos de Modelacion y Computacion grafica para ingenieros
