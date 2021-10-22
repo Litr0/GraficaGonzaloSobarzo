@@ -553,11 +553,11 @@ if __name__ == "__main__":
 
 
         if (glfw.get_key(window, glfw.KEY_W) == glfw.PRESS): #mov hacia adelante
-            autoMov.transform = tr.matmul([tr.translate(np.cos(theta)*0.01,0,np.sin(theta)*0.01), autoMov.transform])
+            autoMov.transform = tr.matmul([tr.translate(np.cos(theta)*0.02,0,np.sin(theta)*0.02), autoMov.transform])
 
 
         if (glfw.get_key(window, glfw.KEY_S) == glfw.PRESS): #mov hacia atras
-            autoMov.transform = tr.matmul([tr.translate(-np.cos(theta)*0.01, 0,-np.sin(theta)*0.01),autoMov.transform])
+            autoMov.transform = tr.matmul([tr.translate(-np.cos(theta)*0.02, 0,-np.sin(theta)*0.02),autoMov.transform])
 
         
         projection = tr.perspective(60, float(width)/float(height), 0.1, 100)
