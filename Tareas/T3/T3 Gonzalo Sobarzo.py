@@ -563,7 +563,6 @@ if __name__ == "__main__":
         projection = tr.perspective(60, float(width)/float(height), 0.1, 100)
         
         ubicacion = sg.findPosition(autoMov, "car1")
-
         # Parametros de la matriz de vista
         controller.viewPos = np.array([ubicacion[0, 0] - 2.86*np.cos(theta), 0.75, ubicacion[2, 0] - 2.86*np.sin(theta)]) #posicion de la camara usando coord cilindricas
         controller.at = np.array([ubicacion[0,0], ubicacion[1,0], ubicacion[2,0]]) #camara siempre debe apuntar al auto 
