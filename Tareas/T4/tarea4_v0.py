@@ -70,8 +70,8 @@ def setLights():
     spot1.quadratic = 0.032
     spot1.position = np.array([1.9, 0.2, 5.15]) #TAREA4: esta ubicada en esta posición
     spot1.direction = np.array([-0.01, -0.1, -1]) #TAREA4: está apuntando perpendicularmente hacia el terreno (Y-, o sea hacia abajo)
-    spot1.cutOff = np.cos(np.radians(12.5)) #TAREA4: corte del ángulo para la luz
-    spot1.outerCutOff = np.cos(np.radians(15)) #TAREA4: la apertura permitida de la luz es de 45°
+    spot1.cutOff = np.cos(np.radians(9)) #TAREA4: corte del ángulo para la luz
+    spot1.outerCutOff = np.cos(np.radians(10)) #TAREA4: la apertura permitida de la luz es de 45°
                                                 #mientras más alto es este ángulo, más se difumina su efecto
     
     spotlightsPool['spot1'] = spot1 #TAREA4: almacenamos la luz en el diccionario, con una clave única
@@ -86,7 +86,7 @@ def setLights():
     spot2.quadratic = 0.032
     spot2.position = np.array([0, 0, 0]) #TAREA4: Está ubicada en esta posición
     spot2.direction = np.array([0, 0, 0]) #TAREA4: también apunta hacia abajo
-    spot2.cutOff = np.cos(np.radians(12.5))
+    spot2.cutOff = np.cos(np.radians(9))
     spot2.outerCutOff = np.cos(np.radians(15)) #TAREA4: Esta luz tiene menos apertura, por eso es más focalizada
     spotlightsPool['spot2'] = spot2 #TAREA4: almacenamos la luz en el diccionario
     #Tercera luz spotilight
@@ -99,7 +99,7 @@ def setLights():
     spot3.quadratic = 0.032
     spot3.position = np.array([0, 0, 0]) #TAREA4: Está ubicada en esta posición
     spot3.direction = np.array([0, 0, 0]) #TAREA4: también apunta hacia abajo
-    spot3.cutOff = np.cos(np.radians(12.5))
+    spot3.cutOff = np.cos(np.radians(9))
     spot3.outerCutOff = np.cos(np.radians(10)) #TAREA4: Esta luz tiene menos apertura, por eso es más focalizada
     spotlightsPool['spot3'] = spot3 #TAREA4: almacenamos la luz en el diccionario
     #Cuarta Luz spotlight
@@ -112,8 +112,8 @@ def setLights():
     spot4.quadratic = 0.032
     spot4.position = np.array([2.1, 0.2, 5.15]) #TAREA4: esta ubicada en esta posición
     spot4.direction = np.array([-0.01, -0.1, -1]) #TAREA4: está apuntando perpendicularmente hacia el terreno (Y-, o sea hacia abajo)
-    spot4.cutOff = np.cos(np.radians(12.5)) #TAREA4: corte del ángulo para la luz
-    spot4.outerCutOff = np.cos(np.radians(15)) #TAREA4: la apertura permitida de la luz es de 15º
+    spot4.cutOff = np.cos(np.radians(9)) #TAREA4: corte del ángulo para la luz
+    spot4.outerCutOff = np.cos(np.radians(10)) #TAREA4: la apertura permitida de la luz es de 15º
     spotlightsPool['spot4'] = spot4 #TAREA4: almacenamos la luz en el diccionario, con una clave única
 
 #TAREA4: modificamos esta función para poder configurar todas las luces del pool
@@ -419,11 +419,11 @@ if __name__ == "__main__":
         ubicacion=sg.findPosition(car2,'system-car2') #posicion del auto 2 
         spot2.position=np.array([0.1*np.cos(-angle)+ubicacion[0]+np.sin(-angle)*-0.2,0.1,0.1*np.sin(-angle)+ubicacion[2]+np.cos(-angle)*-0.2]) #luz 2 para que quede en la posicion del auto 2 en la punta de este 
         spot2.direction=tr.matmul([tr.translate(C[step,0],C[step,1], -C[step,2]+1), tr.rotationY(-np.pi/2+angle)]) #aplicamos las transformaciones a las direcciones de las luces que van con el auto 2
-        spot3.position=np.array([-0.1*np.cos(-angle)+ubicacion[0]+np.sin(-angle)/4.5,0.1,-0.1*np.sin(-angle)+ubicacion[2]+np.cos(-angle)*-0.2]) #mismas modificaciones que a la luz 2 pero hacia la izquierda del auto 
+        spot3.position=np.array([-0.1*np.cos(-angle)+ubicacion[0]+np.sin(-angle)*-0.2,0.1,-0.1*np.sin(-angle)+ubicacion[2]+np.cos(-angle)*-0.2]) #mismas modificaciones que a la luz 2 pero hacia la izquierda del auto 
         spot3.direction=tr.matmul([tr.translate(C[step,0],C[step,1], -C[step,2]+1), tr.rotationY(-np.pi/2+angle)])
         step+=1 
         spot1.direction=np.array([((np.cos(angulo+np.pi/2))),0.03,(-np.sin(angulo+np.pi/2))]) #modificamos la direccion de las 2 luces con respecto al angulo en cada ciclo y queden los focos del auto 
-        spot4.direction=np.array([((np.cos(angulo+np.pi/2.25))),0.03,(-np.sin(angulo+np.pi/2.25))]) 
+        spot4.direction=np.array([((np.cos(angulo+np.pi/2))),0.03,(-np.sin(angulo+np.pi/2))]) 
         sg.drawSceneGraphNode(car, lightPipeline, "model")
         Auto = sg.findNode(car,'system-car')
         Auto.transform = tr.matmul([tr.translate(coord_X+2,-0.037409,coord_Z+5),tr.rotationY(np.pi+angulo),tr.rotationY(-np.pi),tr.translate(-2,0.037409,-5)])
